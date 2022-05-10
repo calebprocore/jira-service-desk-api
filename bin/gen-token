@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# generates a token from username + api_token (deprecated: username:password)
+source ./set-jira-params
+pushd . > /dev/null
+cd ..
+
+printf "\n$JIRA_USER"
+printf "\n$JIRA_API_TOKEN\n\n"
+echo -n ${JIRA_USER}:${JIRA_API_TOKEN} | base64
+printf "\npast this into config/dev.ini"
+
+popd > /dev/null
