@@ -1,0 +1,27 @@
+#!/bin/bash
+# this will not work when only Service Desk is in use
+# it only works against Jira Software, not service desk
+# use a service desk api
+
+# the only usefulness of this script is that it gives you two things:
+# 1. the service desk: 'project_id'
+# 2. the service desk: 'project_key'
+# which is not the same as the 'service desk: service_desk_id
+source ./set-jira-params
+pushd . > /dev/null
+cd ..
+
+# --
+URL=${JIRA_HOST}/rest/api/2/issue/createmeta
+LOG=logs/create-meta.json
+rm -f ${LOG}
+
+#--user ${JIRA_USER_API_TOKEN} \
+curl \
+   -D- \
+   -X GET \
+    --user ${JIRA_USER}:${JIRA_API_TOKEN} \
+   -H "Content-Type: application/json" \
+   ${URL} | tee ${LOG}
+
+popd > /dev/null

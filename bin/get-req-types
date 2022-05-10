@@ -1,0 +1,1 @@
+GET /rest/servicedeskapi/servicedesk/{serviceDeskId}/requesttype

@@ -1,0 +1,5 @@
+pathlib2
+python-dotenv
+requests
+python-dotenv
+atlassian-python-api

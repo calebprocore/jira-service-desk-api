@@ -1,0 +1,33 @@
+#!/bin/bash
+pushd . > /dev/null
+cd ..
+pwd
+dos2unix -q .env
+export ENV=$(awk -F "=" '/^ENV/ {print $2}' .env)
+printf "\nENV=[${ENV}]"
+
+INI=config/${ENV}.ini
+dos2unix -q ${INI}
+export JIRA_HOST=$(awk -F "=" '/^JIRA_HOST/ {print $2}' ${INI})
+export JIRA_RUM_PRJ_ID=$(awk -F "=" '/^JIRA_RUM_PRJ_ID/ {print $2}' ${INI})
+export JIRA_RUM_PRJ_KEY=$(awk -F "=" '/^JIRA_RUM_PRJ_KEY/ {print $2}' ${INI})
+export JIRA_USER=$(awk -F "=" '/^JIRA_USER/ {print $2}' ${INI})
+export JIRA_PASSWORD=$(awk -F "=" '/^JIRA_PASSWORD/ {print $2}' ${INI})
+export JIRA_API_TOKEN=$(awk -F "=" '/^JIRA_API_TOKEN/ {print $2}' ${INI})
+export JIRA_RUM_SERVICE_DESK_ID=$(awk -F "=" '/^JIRA_RUM_SERVICE_DESK_ID/ {print $2}' ${INI})
+export JIRA_RUM_ISSUE_TYPE_ID=$(awk -F "=" '/^JIRA_RUM_ISSUE_TYPE_ID/ {print $2}' ${INI})
+export JIRA_RUM_REQUEST_TYPE_ID=$(awk -F "=" '/^JIRA_RUM_REQUEST_TYPE_ID/ {print $2}' ${INI})
+
+# Use this in every HTTP GET/POST Jira API call, works best
+export JIRA_USER_API_TOKEN="${JIRA_USER}:${JIRA_API_TOKEN}"
+
+popd > /dev/null
+
+# --
+printf "\nJIRA_HOST=[${JIRA_HOST}]"
+printf "\nJIRA_USER=[${JIRA_USER}]"
+printf "\nJIRA_API_TOKEN=[${JIRA_API_TOKEN}]"
+printf "\nJIRA_USER_API_TOKEN=[${JIRA_USER_API_TOKEN}]"
+printf "\nJIRA_JIRA_RUM_SERVICE_DESK_ID=[${JIRA_RUM_SERVICE_DESK_ID}]"
+printf "\nJIRA_JIRA_RUM_ISSUE_TYPE_ID=[${JIRA_RUM_ISSUE_TYPE_ID}]"
+printf "\nJIRA_JIRA_RUM_REQUEST_TYPE_ID=[${JIRA_RUM_REQUEST_TYPE_ID}]\n"
