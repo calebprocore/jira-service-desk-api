@@ -37,21 +37,19 @@ class JiraIssue(object):
             'JIRA',
             'JIRA_RUM_REQUEST_ISSUE_TYPE_ID')
 
-        self.jira_base64_api_token = self.config.get_value(
+        self.jira_base64_user_api_token = self.config.get_value(
             'JIRA',
-            'JIRA_BASE64_API_TOKEN')
-
-        self.jira_base64_user_api_token = self.jira_user + ':' + self.jira_base64_api_token
+            'JIRA_BASE64_USER_API_TOKEN')
 
         print('jira_host: ' + self.jira_host)  # verify that is read by printing one value
         print('jira_rum_issue_type_id: ' + self.jira_rum_issue_type_id)
+        print('base64 token' + self.jira_base64_user_api_token)
         # combine $USER:$TOKEN here to create 'user_api_token' to use in API call
 
         # this will not work with 'Authorization: Basic + token
-        self.jira_user_api_token = self.jira_user + ':' + self.jira_api_token
-        print('self.jira_user_api_token: ' + self.jira_user_api_token)
+        # self.jira_user_api_token = self.jira_user + ':' + self.jira_api_token
+        # print('self.jira_user_api_token: ' + self.jira_user_api_token)
 
-        print('base64 token' + self.jira_base64_user_api_token)
 
     def get_headers(self):
         accept_content_type = 'application/json'
