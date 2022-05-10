@@ -18,9 +18,6 @@ class JiraIssue(object):
         self.jira_rum_prj_key = None
         self.jira_rum_issue_type_id = None
         self.jira_user_api_token = None
-
-        # for Auth
-        self.jira_base64_api_token = None
         self.jira_base64_user_api_token = None
 
     def init(self):
