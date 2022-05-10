@@ -17,6 +17,7 @@ class JiraIssue(object):
         self.jira_api_token = None
         self.jira_rum_prj_key = None
         self.jira_rum_issue_type_id = None
+        self.jira_base64_user_api_token = None
 
     def init(self):
         self.config = Config()
@@ -32,22 +33,31 @@ class JiraIssue(object):
             'JIRA',
             'JIRA_RUM_REQUEST_ISSUE_TYPE_ID')
 
+        self.jira_base64_user_api_token = self.config.get_value(
+            'JIRA',
+            'JIRA_BASE64_USER_API_TOKEN')
+
         print('jira_host: ' + self.jira_host)  # verify that is read by printing one value
         print('jira_rum_issue_type_id: ' + self.jira_rum_issue_type_id)
-        # value
-
         # combine $USER:$TOKEN here to create 'user_api_token' to use in API call
+
+        # this will not work with 'Authorization: Basic + token
         self.jira_user_api_token = self.jira_user + ':' + self.jira_api_token
         print('self.jira_user_api_token: ' + self.jira_user_api_token)
+        print('base64 token' + self.jira_base64_user_api_token)
 
     def get_headers(self):
         accept_content_type = 'application/json'
         headers = {
             'User-Agent': 'python-requests',
-            'Authorization': 'Basic ' + self.jira_user_api_token,
             'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + self.jira_base64_user_api_token,
             'Accept': 'application/json'
         }
+
+        # this will not work, gives:   Basic authentication with passwords is deprecated.
+        # 'Authorization': 'Basic ' + self.jira_user_api_token,
+
         return headers
 
     def submit_issue(self):
@@ -56,8 +66,8 @@ class JiraIssue(object):
 
         data = {
             "fields": {"project": {"key": self.jira_rum_prj_key},
-                       "summary": "created by python requests using Jira REST API",
-                       "description": "created by python requests using Jira REST API",
+                       "summary": "2022-05-10: created by python requests using Jira REST API",
+                       "description": "2022-05-10: created by python requests using Jira REST API",
                        "issuetype": {"id": self.jira_rum_issue_type_id}
                        }
         }
