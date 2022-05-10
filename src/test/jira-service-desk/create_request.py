@@ -7,6 +7,12 @@ class JiraServiceDesk(object):
     """
     Jira: Service Desk Create Request
 
+    Jira Service Desk API
+    https://developer.atlassian.com/cloud/jira/service-desk/rest/api-group-servicedesk/
+
+    Create Issue
+    https://developer.atlassian.com/cloud/jira/service-desk/rest/api-group-request/#api-rest-servicedeskapi-request-post
+
     auth:    Bearer Base64Encoded(user:api_token)
     """
 

@@ -1,0 +1,29 @@
+#!/bin/bash
+
+source ./set-jira-params
+pushd . > /dev/null
+cd ..
+
+LOG=logs/get-sd-info.json
+URL=${JIRA_HOST}/rest/servicedeskapi/info
+
+# ---
+curl \
+  -D- \
+  -X GET \
+  -H 'X-ExperimentalApi: opt-in' \
+  -H "Authorization: Basic ${JIRA_BAS64_USER_API_TOKEN}" \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  ${URL} | tee ${LOG}
+
+# from support
+#curl --request GET \
+#  --url '[https://mysite.atlassian.net/rest/servicedeskapi/knowledgebase/article?query=article]' \
+#  --header 'X-ExperimentalApi: opt-in'\
+#  --header 'Authorization: Basic base64encodedusernameandaccesstoken' \
+#  --header 'Accept: application/json'
+
+# --
+# use Base64Encoded($user:$api_token)
+popd > /dev/null

@@ -1,0 +1,15 @@
+{
+  "version": "3c518b7e272509556f0600b4a2ec3cae80668775",
+  "platformVersion": "3c518b7e272509556f0600b4a2ec3cae80668775",
+  "buildDate": {
+    "iso8601": "2022-05-09T22:04:14+1000",
+    "jira": "2022-05-09T05:04:14.000-0700",
+    "friendly": "Monday 10:04 PM",
+    "epochMillis": 1652097854000
+  },
+  "buildChangeSet": "3c518b7e272509556f0600b4a2ec3cae80668775",
+  "isLicensedForUse": true,
+  "_links": {
+    "self": "https://procore-test.atlassian.net/rest/servicedeskapi/info"
+  }
+}
