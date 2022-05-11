@@ -64,11 +64,12 @@ class JiraServiceDesk(object):
         print('token:' + self.jira_user_api_token)
         headers = {
             'User-Agent': 'python-requests',
-            'Authorization': 'Bearer ' + self.jira_user_api_token,
+            'Authorization': 'Basic ' + self.jira_base64_user_api_token,
             'Content-Type': accept_content_type,
             'Accept': accept_content_type
         }
 
+        # 'Authorization': 'Bearer ' + self.jira_user_api_token,
         # 1)
         # this does not work => Error: 'Client must be authenticated to access this resource.'
         # 'Authorization': 'Bearer ' + self.jira_base64_user_api_token,
@@ -106,9 +107,9 @@ class JiraServiceDesk(object):
             "requestTypeId": self.jira_rum_request_type_id,
             "requestFieldValues": {
                 "summary": "Jira Service Desk: request created via Python REST API",
-                "description": "<description>"
             }
         }
+        # "description": "<description>"
         # "raiseOnBehalfOf": "?? email | jira_account_id"
 
         headers = self.get_headers()
