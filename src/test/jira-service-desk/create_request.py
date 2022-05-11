@@ -70,20 +70,19 @@ class JiraServiceDesk(object):
         }
 
         # 1)
-        # this does not work | Client must be authenticated to access this resource.
+        # this does not work => Error: 'Client must be authenticated to access this resource.'
         # 'Authorization': 'Bearer ' + self.jira_base64_user_api_token,
 
         # 2)
-        # this does not work | user:api_token | Client must be authenticated to access this
-        # resource.
+        # this does not work | user:api_token => Error: 'Client must be authenticated to access this resource'
         # 'Authorization': 'Bearer ' + self.jira_user_api_token,
 
         # 3)
-        # this does not work (basic deprecated)
+        # this does not work => Error: 'basic deprecated'
         # 'Authorization': 'Basic ' + self.jira_user_api_token,
 
         # ---
-        # The following Authorization methods **do NOT work**
+        # The following four Authorization methods **do NOT work**
         # 'Authorization': 'Bearer ' + self.jira_base64_user_api_token  | Base64Encoded(user:api_token)
         # 'Authorization': 'Basic ' + self.jira_base64_user_api_token   | Base64Encoded(user:api_token)
         # 'Authorization': 'Basic ' + self.jira_user_api_token          | user:api_token
