@@ -1,4 +1,5 @@
 #!/bin/bash
+# a test to see if Jira API token is working
 
 pushd . > /dev/null
 cd ..
