@@ -20,7 +20,7 @@ export JIRA_RUM_REQUEST_TYPE_ID=$(awk -F "=" '/^JIRA_RUM_REQUEST_TYPE_ID/ {print
 
 # Use this in every HTTP GET/POST Jira API call, works best
 export JIRA_USER_API_TOKEN="${JIRA_USER}:${JIRA_API_TOKEN}"
-
+export JIRA_BASE64_USER_API_TOKEN="${JIRA_BASE64_USER_API_TOKEN}"
 popd > /dev/null
 
 # --

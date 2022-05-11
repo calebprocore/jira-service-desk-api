@@ -52,11 +52,21 @@ class JiraServiceDesk(object):
         accept_content_type = 'application/json'
         headers = {
             'User-Agent': 'python-requests',
-            'Authorization': 'Bearer ' + self.jira_base64_user_api_token,
+            'Authorization': 'Basic ' + self.jira_base64_user_api_token,
             'Content-Type': accept_content_type,
             'Accept': accept_content_type
         }
         return headers
+
+        # works (Basic and Bearer work)
+        # 'Authorization': 'Basic ' + self.jira_base64_user_api_token,
+        # 'Authorization': 'Bearer ' + self.jira_base64_user_api_token,
+
+        # try these
+        # user:api_token
+        # Base64Encoded(user:api_token)
+        # user:password
+        # Base64Encoded(user:password)
 
     def get_service_desk_info(self):
         url = self.jira_host + '/rest/servicedeskapi/info'
