@@ -1,0 +1,15 @@
+#!/bin/bash
+
+pushd . > /dev/null
+cd ..
+source ./set-jira-params
+printf "JIRA_USER_API_TOKEN=${JIRA_USER_API_TOKEN}"
+popd > /dev/null
+
+# user:api_token
+LOG=get-issue.json
+rm -f ${LOG}
+curl --request GET \
+    --url 'https://procore-test.atlassian.net/rest/api/3/issue/ITSAMPLE-5' \
+    --user "${JIRA_USER_API_TOKEN}" \
+    --header 'Accept: application/json' | tee ${LOG}
