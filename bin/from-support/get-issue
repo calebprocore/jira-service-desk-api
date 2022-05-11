@@ -9,7 +9,12 @@ popd > /dev/null
 # user:api_token
 LOG=get-issue.json
 rm -f ${LOG}
+
+# --
+# URL= --url 'https://procore-test.atlassian.net/rest/api/3/issue/{issueIdOrKey}' \
+ISSUE=ITSAMPLE-5
+URL=${JIRA_HOST}/rest/api/latest/issue/${ISSUE}
 curl --request GET \
-    --url 'https://procore-test.atlassian.net/rest/api/3/issue/ITSAMPLE-5' \
-    --user "${JIRA_USER_API_TOKEN}" \
+    --url ${URL} \
+    --user ${JIRA_USER_API_TOKEN} \
     --header 'Accept: application/json' | tee ${LOG}
