@@ -13,7 +13,16 @@ class JiraServiceDesk(object):
     Create Issue
     https://developer.atlassian.com/cloud/jira/service-desk/rest/api-group-request/#api-rest-servicedeskapi-request-post
 
-    auth:    Bearer Base64Encoded(user:api_token)
+    config/dev.ini must be in place with the Jira API key
+    to run, the current working directory must be the top level project directory so that this
+    .py can find:   config/dev.ini relative.
+
+    so:
+    $python src/test/jira-service-desk-create_request.py
+
+    will work
+
+    In PyCharm, or other IDE, set 'working directory' to: <path>/jira-service-desk/
     """
 
     def __init__(self):
@@ -52,9 +61,10 @@ class JiraServiceDesk(object):
 
     def get_headers(self):
         accept_content_type = 'application/json'
+        print('token:' + self.jira_user_api_token)
         headers = {
             'User-Agent': 'python-requests',
-            'Authorization': 'Bearer ' + self.jira_base64_user_api_token,
+            'Authorization': 'Bearer ' + self.jira_user_api_token,
             'Content-Type': accept_content_type,
             'Accept': accept_content_type
         }
