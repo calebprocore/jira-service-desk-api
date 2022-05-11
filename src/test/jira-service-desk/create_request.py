@@ -71,6 +71,18 @@ class JiraServiceDesk(object):
         # 3)
         # this does not work (basic deprecated)
         # 'Authorization': 'Basic ' + self.jira_user_api_token,
+
+        # ---
+        # The following Authorization methods **do NOT work**
+        # 'Authorization': 'Bearer ' + self.jira_base64_user_api_token  | Base64Encoded(user:api_token)
+        # 'Authorization': 'Basic ' + self.jira_base64_user_api_token   | Base64Encoded(user:api_token)
+        # 'Authorization': 'Basic ' + self.jira_user_api_token          | user:api_token
+        # 'Authorization': 'Bearer ' + self.jira_user_api_token         | user:api_token
+
+        # errors:
+        # Basic:    Basic authentication with passwords is deprecated. (I'm not using a password)
+        # Bearer:   {"message": "Client must be authenticated to access this resource.
+        # status-code": 401}
         return headers
 
     def submit_request(self):
