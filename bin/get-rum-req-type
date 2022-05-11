@@ -1,0 +1,33 @@
+#!/bin/bash
+# This script is useful to get:
+# 1. service_desk_id
+# 2. service desk issue_type_id associated with custom request_type
+# 3. request_type_id
+# 4. url of request type
+# 5. group_id request type is in
+#
+# two of these id's are needed to create a new request with the Service Desk API
+#   1. service_desk_id
+#   2. request_type_id
+#
+# put these params in config/${ENV}.ini  (config/dev.ini for example)
+
+source ./set-jira-params
+pushd . > /dev/null
+cd ..
+
+#URL=${JIRA_HOST}/rest/servicedeskapi/requesttype   # get across all SD
+URL=${JIRA_HOST}/rest/servicedeskapi/servicedesk/${JIRA_RUM_SERVICE_DESK_ID}/requesttype
+LOG=logs/get-rum-req-types.json
+rm -f ${LOG}
+
+# ---
+curl \
+   -D- \
+   -X GET \
+   -H "X-ExperimentalApi: opt-in" \
+   -H "Content-Type: application/json" \
+   --user ${JIRA_USER_API_TOKEN} \
+   ${URL} | tee ${LOG}
+
+popd > /dev/null
