@@ -12,10 +12,13 @@ curl \
   -D- \
   -X GET \
   -H 'X-ExperimentalApi: opt-in' \
-  -H "Authorization: Basic ${JIRA_BAS64_USER_API_TOKEN}" \
+  -H "Authorization: Basic ${JIRA_BASE64_USER_API_TOKEN}" \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   ${URL} | tee ${LOG}
+
+# -H "Authorization: Basic ${JIRA_BASE64_USER_API_TOKEN}" \
+# -H "Authorization: Basic garbage" \
 
 # from support
 #curl --request GET \

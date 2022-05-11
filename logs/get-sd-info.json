@@ -1,15 +1,18 @@
-{
-  "version": "3c518b7e272509556f0600b4a2ec3cae80668775",
-  "platformVersion": "3c518b7e272509556f0600b4a2ec3cae80668775",
-  "buildDate": {
-    "iso8601": "2022-05-09T22:04:14+1000",
-    "jira": "2022-05-09T05:04:14.000-0700",
-    "friendly": "Monday 10:04 PM",
-    "epochMillis": 1652097854000
-  },
-  "buildChangeSet": "3c518b7e272509556f0600b4a2ec3cae80668775",
-  "isLicensedForUse": true,
-  "_links": {
-    "self": "https://procore-test.atlassian.net/rest/servicedeskapi/info"
-  }
-}
+HTTP/2 200 
+server: AtlassianProxy/1.19.3.1
+vary: Accept-Encoding
+cache-control: no-cache, no-store, no-transform
+content-type: application/json;charset=UTF-8
+strict-transport-security: max-age=315360000; includeSubDomains; preload
+date: Wed, 11 May 2022 00:06:25 GMT
+atl-traceid: 31d180c4c8ae9157
+x-arequestid: ff69f173-6ae4-4421-b49a-d5afe0e65ecf
+x-xss-protection: 1; mode=block
+timing-allow-origin: *
+x-envoy-upstream-service-time: 31
+x-content-type-options: nosniff
+set-cookie: atlassian.xsrf.token=801b72aa-c6cc-4386-ae39-7b0f9cae1b78_bc2cdf4f022ebebc49abadd3de18714b4dcfe1ec_lout; path=/; SameSite=None; Secure
+set-cookie: jsd.portal.language.anonymous=en-US; Expires=Wed, 11-May-2022 00:07:25 GMT; Path=/
+expect-ct: report-uri="https://web-security-reports.services.atlassian.com/expect-ct-report/global-proxy", enforce, max-age=86400
+
+{"version":"3c518b7e272509556f0600b4a2ec3cae80668775","platformVersion":"3c518b7e272509556f0600b4a2ec3cae80668775","buildDate":{"iso8601":"2022-05-09T22:04:14+1000","jira":"2022-05-09T05:04:14.000-0700","friendly":"Monday 10:04 PM","epochMillis":1652097854000},"buildChangeSet":"3c518b7e272509556f0600b4a2ec3cae80668775","isLicensedForUse":true,"_links":{"self":"https://procore-test.atlassian.net/rest/servicedeskapi/info"}}
