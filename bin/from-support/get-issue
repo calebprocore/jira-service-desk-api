@@ -3,7 +3,7 @@
 pushd . > /dev/null
 cd ..
 source ./set-jira-params
-printf "JIRA_USER_API_TOKEN=${JIRA_USER_API_TOKEN}"
+#printf "JIRA_USER_API_TOKEN=${JIRA_USER_API_TOKEN}"
 popd > /dev/null
 
 # user:api_token
