@@ -13,6 +13,13 @@ class JiraServiceDesk(object):
     Create Issue
     https://developer.atlassian.com/cloud/jira/service-desk/rest/api-group-request/#api-rest-servicedeskapi-request-post
 
+    Approvers:
+    https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/#fieldformats
+    https://community.atlassian.com/t5/New-to-Jira-Service-Management/How-to-set-approvers-while-creating-issue-rest-api/qaq-p/1344903
+
+    Automation:
+    https://community.atlassian.com/t5/Jira-articles/Automation-for-Jira-Send-web-request-using-Jira-REST-API/ba-p/1443828
+
     Setup:
     ------
     config/dev.ini must be in place with the Jira API key

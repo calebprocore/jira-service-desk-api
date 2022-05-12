@@ -1,0 +1,23 @@
+#!/bin/bash
+
+source ./set-jira-params
+pushd . > /dev/null
+cd ..
+
+#URL=${JIRA_HOST}/rest/servicedeskapi/knowledgebase/article?query=article
+URL=https://confluence.atlassian.com/kb
+LOG=logs/kb-search.html
+rm -f ${LOG}
+
+# first authenticate | works to auth
+#OPTS="-v"
+curl $OPTS ${JIRA_HOST} --user ${JIRA_USER}:${JIRA_API_TOKEN} 2>&1 > /dev/null
+
+# --
+curl --request GET \
+    --url ${URL} \
+    --header 'X-ExperimentalApi: opt-in' \
+    --header "Authorization: Basic ${JIRA_BASE64_USER_API_TOKEN}" \
+    --header 'Accept: application/json' 2>&1 | tee ${LOG}
+
+popd > /dev/null
