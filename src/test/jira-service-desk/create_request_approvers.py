@@ -5,7 +5,7 @@ from base.config import Config
 
 class JiraServiceDesk(object):
     """
-    Jira: Service Desk Create Request
+    Jira: Service Desk | Create Customer Request with Approvers
 
     Jira Service Desk API
     https://developer.atlassian.com/cloud/jira/service-desk/rest/api-group-servicedesk/
@@ -13,6 +13,8 @@ class JiraServiceDesk(object):
     Create Issue
     https://developer.atlassian.com/cloud/jira/service-desk/rest/api-group-request/#api-rest-servicedeskapi-request-post
 
+    Setup:
+    ------
     config/dev.ini must be in place with the Jira API key
     to run, the current working directory must be the top level project directory so that this
     .py can find:   config/dev.ini relative.
@@ -22,7 +24,8 @@ class JiraServiceDesk(object):
 
     will work
 
-    In PyCharm, or other IDE, set 'working directory' to: <path>/jira-service-desk/
+    In PyCharm, or other IDE, edit 'run configurations', and set 'working directory' to:
+    <path>/jira-service-desk/
     """
 
     def __init__(self):
@@ -75,31 +78,22 @@ class JiraServiceDesk(object):
             'Accept': accept_content_type
         }
 
-        # 'Authorization': 'Bearer ' + self.jira_user_api_token,
-        # 1)
-        # this does not work => Error: 'Client must be authenticated to access this resource.'
-        # 'Authorization': 'Bearer ' + self.jira_base64_user_api_token,
-
-        # 2)
-        # this does not work | user:api_token => Error: 'Client must be authenticated to access this resource'
-        # 'Authorization': 'Bearer ' + self.jira_user_api_token,
-
-        # 3)
-        # this does not work => Error: 'basic deprecated'
-        # 'Authorization': 'Basic ' + self.jira_user_api_token,
-
-        # ---
-        # The following four Authorization methods **do NOT work**
-        # 'Authorization': 'Bearer ' + self.jira_base64_user_api_token  | Base64Encoded(user:api_token)
-        # 'Authorization': 'Basic ' + self.jira_base64_user_api_token   | Base64Encoded(user:api_token)
-        # 'Authorization': 'Basic ' + self.jira_user_api_token          | user:api_token
-        # 'Authorization': 'Bearer ' + self.jira_user_api_token         | user:api_token
-
-        # errors:
-        # Basic:    Basic authentication with passwords is deprecated. (I'm not using a password)
-        # Bearer:   {"message": "Client must be authenticated to access this resource.
-        # status-code": 401}
         return headers
+
+    def get_approvers(self):
+        """
+        admin
+        62152a006a5742006a54be7d
+
+        ---
+        cs@pc
+        60673cffaee2400068996f1a
+
+        fn@pc
+        6169d89199b4b8006a4fb786
+        """
+        approvers = None
+        return approvers
 
     def submit_request(self):
         """
@@ -108,14 +102,18 @@ class JiraServiceDesk(object):
 
         url = self.jira_host + '/rest/servicedeskapi/request'
 
+        # approvers = self.get_approvers()
         data = {
             "serviceDeskId": self.jira_rum_service_desk_id,
             "requestTypeId": self.jira_rum_request_type_id,
             "requestFieldValues": {
                 "summary": "Jira Service Desk: request created via Python REST API",
-            }
+                "description": "this is a customer service request with approvers"
+            },
+            "approvers": [
+                "qm:60673cffaee2400068996f1a"
+            ]
         }
-        # "description": "<description>"
         # "raiseOnBehalfOf": "?? email | jira_account_id"
 
         headers = self.get_headers()

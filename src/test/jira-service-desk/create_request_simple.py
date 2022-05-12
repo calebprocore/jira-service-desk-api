@@ -113,9 +113,13 @@ class JiraServiceDesk(object):
             "requestTypeId": self.jira_rum_request_type_id,
             "requestFieldValues": {
                 "summary": "Jira Service Desk: request created via Python REST API",
+                "description": "<description>"
             }
         }
         # "description": "<description>"
+        # what missing required descriptin field look like
+        # check response:  for "errormessage", if so, return
+        # {"errorMessage":"Your request could not be created. Please check the fields have been correctly filled in. Please provide a value for required field 'Description'","i18nErrorMessage":{"i18nKey":"sd.validation.request.creation.failure.required.field","parameters":["Please provide a value for required field 'Description'"]}}
         # "raiseOnBehalfOf": "?? email | jira_account_id"
 
         headers = self.get_headers()
