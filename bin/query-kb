@@ -4,8 +4,7 @@ source ./set-jira-params
 pushd . > /dev/null
 cd ..
 
-#URL=${JIRA_HOST}/rest/servicedeskapi/knowledgebase/article?query=article
-URL=https://confluence.atlassian.com/kb
+URL=${JIRA_HOST}/rest/servicedeskapi/knowledgebase/article?query=article
 LOG=logs/kb-search.html
 rm -f ${LOG}
 
